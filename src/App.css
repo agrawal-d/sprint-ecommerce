@@ -1,0 +1,74 @@
+* {
+    box-sizing: border-box;
+}
+
+body, input, textarea, button, select, option {
+    font-family: 'Product Sans', sans-serif;
+    font-weight: regular;
+    background: rgb(229, 227, 241);
+    margin-top:50px;
+}
+
+.app {
+    width: 900px;
+    margin: 0 auto;
+    min-height: 100vh;
+}
+
+.notes-container {
+    display: inline-block;
+    column-count:3;
+    column-gap:20px;
+}
+
+.note {
+    padding: 40px;
+    box-shadow: 0px 5px 10px 0px rgba(204, 86, 141, 0.2);
+    border-radius: 5px;
+    background: white;
+    margin-bottom: 20px;
+    width:100%;
+    position: relative;
+    display: inline-block;
+}
+
+.notes-container {
+    list-style: none;
+    padding-left: 0px;
+}
+
+.note-input {
+    padding: 20px;
+    background: white;
+    width: calc(100% + 40px);
+    border: 0px;
+    margin: 0px;
+    margin-left: -20px;
+    margin-bottom: 20px;
+    box-shadow: 0px 5px 10px 0px rgba(204, 86, 141, 0.2);
+    border-radius: 50px;
+}
+
+.note:hover .delete-button {
+    opacity: 1;
+    outline: none;
+    cursor: pointer;
+    padding: 10px;
+}
+
+.delete-button {
+    position: absolute;
+    top: -50px;
+    transition: all 0.4s;
+    border: 0px;
+    right: 0px;
+    background: transparent;
+    font-weight: 700;
+    color: red;
+    opacity: 0;
+    font-size: 20px;
+}
+
+.delete-button:hover {
+    color: orange;
+}
