@@ -1,15 +1,15 @@
 {
   "files": {
-    "main.css": "/hereisdx/sprint-ecommerce/static/css/main.7f76ec66.chunk.css",
-    "main.js": "/hereisdx/sprint-ecommerce/static/js/main.10110f71.chunk.js",
-    "main.js.map": "/hereisdx/sprint-ecommerce/static/js/main.10110f71.chunk.js.map",
-    "runtime~main.js": "/hereisdx/sprint-ecommerce/static/js/runtime~main.6d719715.js",
-    "runtime~main.js.map": "/hereisdx/sprint-ecommerce/static/js/runtime~main.6d719715.js.map",
-    "static/js/2.0f58faaa.chunk.js": "/hereisdx/sprint-ecommerce/static/js/2.0f58faaa.chunk.js",
-    "static/js/2.0f58faaa.chunk.js.map": "/hereisdx/sprint-ecommerce/static/js/2.0f58faaa.chunk.js.map",
-    "index.html": "/hereisdx/sprint-ecommerce/index.html",
-    "precache-manifest.23dd94ad1a7696d51885f1378f76c452.js": "/hereisdx/sprint-ecommerce/precache-manifest.23dd94ad1a7696d51885f1378f76c452.js",
-    "service-worker.js": "/hereisdx/sprint-ecommerce/service-worker.js",
-    "static/css/main.7f76ec66.chunk.css.map": "/hereisdx/sprint-ecommerce/static/css/main.7f76ec66.chunk.css.map"
+    "main.css": "/sprint-ecommerce/static/css/main.7f76ec66.chunk.css",
+    "main.js": "/sprint-ecommerce/static/js/main.c80b01ed.chunk.js",
+    "main.js.map": "/sprint-ecommerce/static/js/main.c80b01ed.chunk.js.map",
+    "runtime~main.js": "/sprint-ecommerce/static/js/runtime~main.4d2c38c2.js",
+    "runtime~main.js.map": "/sprint-ecommerce/static/js/runtime~main.4d2c38c2.js.map",
+    "static/js/2.0f58faaa.chunk.js": "/sprint-ecommerce/static/js/2.0f58faaa.chunk.js",
+    "static/js/2.0f58faaa.chunk.js.map": "/sprint-ecommerce/static/js/2.0f58faaa.chunk.js.map",
+    "index.html": "/sprint-ecommerce/index.html",
+    "precache-manifest.b2c01f6d357b2c2d97cce033d69ea0d6.js": "/sprint-ecommerce/precache-manifest.b2c01f6d357b2c2d97cce033d69ea0d6.js",
+    "service-worker.js": "/sprint-ecommerce/service-worker.js",
+    "static/css/main.7f76ec66.chunk.css.map": "/sprint-ecommerce/static/css/main.7f76ec66.chunk.css.map"
   }
 }
