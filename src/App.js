@@ -1,137 +1,235 @@
 import React from 'react';
-import './App.css';
+
+const inventory = [
+    {
+        name: "Dog",
+        price: "100",
+        image: "dog.png"
+    },
+    {
+        name: "Book",
+        price: "5",
+        image: "book.png"
+    },
+    {
+        name: "JavaScript",
+        price: "69",
+        image: "js.png"
+    },
+    {
+        name: "Python",
+        price: "0",
+        image: "python.png"
+    },
+    {
+        name: "CRUx President Post",
+        price: "599",
+        image: "crux.png"
+    },
+    {
+        name: "BITS Pilani",
+        price: "4000000",
+        image: "bits.png"
+    },
+    {
+        name: "Laptop",
+        price: "999",
+        image: "laptop.png"
+    },
+    {
+        name: "Orange",
+        price: "20",
+        image: "orange.png"
+    },
+    {
+        name: "Nirma Detergent",
+        price: "10",
+        image: "nirma.png"
+    },
+    {
+        name: "Maggi",
+        price: "1",
+        image: "maggi.png"
+    },
+]
 
 
-var notes = [
-  {
-    text: "There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form, by injected humour, or randomised words which don't look even slightly believable. If you are going to use a passage of Lorem Ipsum, you need to be sure there isn't anything embarrassing hidden in the middle of text. All the Lorem Ipsum generators on the Internet tend to repeat predefined chunks as necessary, making this the first true generator on the Internet. It uses a dictionary of over 200 Latin words, combined with a handful of model sentence structures, to generate Lorem Ipsum which looks reasonable. The generated Lorem Ipsum is therefore always free from repetition, injected humour, or non-characteristic words etc."
-  },
-  {
-    text: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."
-  },
-  {
-    text: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."
 
-  }
-];
+class Cart extends React.Component {
 
-class TextBox extends React.Component {
 
-  constructor(props) {
-    super(props)
-    this.state = {
-      value: this.props.value
+    render() {
+        var cart = this.props.cart
+        if (cart.length === 0) {
+            return (
+                <div className="cart">
+                    You do not have any items in your cart.
+                </div>
+            )
+        }
+
+        var cartItems = [];
+        var price = 0;
+        for (var element of cart) {
+            price += parseInt(element.price);
+            cartItems.push(
+                <div className="cart-item" key={element.name}>
+                    <b>{element.name} </b>
+                    <span>$ {element.price}</span>
+                    <br />
+                    <button onClick={() => { this.props.removeFromCart(element) }}>Remove</button>
+                </div>
+            )
+        }
+        return (
+            <div className="cart">
+                <h2>Cart</h2>
+                <p>You have {cart.length} item(s) in cart.</p>
+                <div>
+                    {cartItems}
+                </div>
+                <hr></hr>
+                <div>
+                    Total Cost of Items : ${price}
+                </div>
+                <br></br>
+                <button className="checkout" onClick={() => { alert(`Thank you for shopping with us.`) }}>Checkout</button>
+            </div>
+        )
+
     }
-    this.handleSubmit = this.handleSubmit.bind(this)
-    this.handleInputChange = this.handleInputChange.bind(this)
-  }
-
-  handleSubmit(e) {
-
-    if (e.keyCode === 13) {
-      if (e.target.value === "") {
-        alert("Please enter some text");
-        return;
-      }
-      this.props.onCreateNote(e.target.value);
-      this.setState({
-        value: ""
-      })
-    }
-  }
-
-  handleInputChange(e) {
-    this.setState({
-      value: e.target.value,
-    })
-
-
-  }
-
-  render() {
-    return (
-      <input className="note-input" placeholder="Type a new note here" autoFocus={true} onChange={this.handleInputChange} onKeyUp={this.handleSubmit} value={this.state.value}></input>
-    )
-  }
 }
 
-class Note extends React.Component {
 
-  constructor(props) {
-    super(props);
-    this.deleteNote = this.deleteNote.bind(this)
-  }
+class Product extends React.Component {
+    constructor(props) {
+        super(props);
+        this.state = {
+            name: props.item.name,
+            price: props.item.price,
+            image: props.item.image
+        }
+    }
 
-  deleteNote() {
-    console.log(this.props.index);
-    this.props.deleteNote(this.props.index)
-  }
-
-  render() {
-    return (
-      <li className="note">
-        <button className="delete-button" onClick={this.deleteNote} title="Delete Note">×</button>
-        {this.props.note}
-      </li>
-    )
-  }
+    render() {
+        return (
+            <div className="row product">
+                <div className="col-md-4 text-center">
+                    <img src={`img/` + this.state.image} className="product-image" />
+                </div>
+                <div className="col-md-8">
+                    <h3>{this.state.name}</h3>
+                    <p>$ {this.state.price}</p>
+                    <button onClick={() => { this.props.addToCart(this.props.item) }}>Add to Cart</button>
+                </div>
+            </div>
+        )
+    }
 }
 
-class NotesApp extends React.Component {
 
-  constructor(props) {
-    super(props);
 
-    this.state = {
-      notes: this.props.notes
+class Ecommerce extends React.Component {
+
+    constructor(props) {
+        super(props);
+        this.state = {
+            inventory: props.inventory,
+            cart: [],
+            favourites: [],
+            inCheckout: false,
+            filterText: ""
+        }
+        this.addToCart = this.addToCart.bind(this);
+        this.handleFilterTextChange = this.handleFilterTextChange.bind(this);
+        this.removeFromCart = this.removeFromCart.bind(this);
+        this.clearFilterText = this.clearFilterText.bind(this)
+
     }
-    this.createNote = this.createNote.bind(this);
-    this.deleteNote = this.deleteNote.bind(this);
-
-  }
-
-  createNote(note) {
-    var notes = this.state.notes;
-    notes.unshift({
-      text: note
-    })
-    this.setState({
-      notes: notes
-    })
-  }
-
-  deleteNote(index) {
-    var notes = this.state.notes;
-    notes.splice(index, 1);
-    this.setState({
-      notes: notes
-    })
-  }
 
 
-  render() {
-    var list = [];
-    for (var index in this.state.notes) {
-      list.push(
-        <Note note={this.state.notes[index].text} key={index} index={index} deleteNote={this.deleteNote}></Note>
-      )
+    handleFilterTextChange(event) {
+        this.setState({
+            filterText: event.target.value
+        })
     }
-    return (
-      <div className="app">
-        <TextBox value={""} onCreateNote={this.createNote}></TextBox>
-        <ul className="notes-container">
-          {list}
-        </ul>
-      </div>
 
-    )
-  }
+    clearFilterText() {
+        this.setState({
+            filterText: ""
+        })
+    }
+
+    addToCart(item) {
+        for (var element of this.state.cart) {
+            if (element.name == item.name) {
+                alert("Item is already present in your cart.")
+                return;
+            }
+        }
+
+        const newCart = this.state.cart;
+        newCart.unshift(item);
+        this.setState({
+            cart: newCart,
+        })
+
+    }
+
+    removeFromCart(item) {
+        var newCart = this.state.cart;
+        for (var i = 0; i < newCart.length; i++) {
+            if (newCart[i].name == item.name) {
+                newCart.splice(i, 1);
+                this.setState({
+                    cart: newCart,
+                })
+                return;
+            }
+        }
+    }
+
+    render() {
+        if (!this.state.inCheckout) {
+            var prodList = [];
+            for (var element of this.state.inventory) {
+                if (element.name.toUpperCase().includes(this.state.filterText.toUpperCase())) {
+                    prodList.push(
+                        <Product item={element} addToCart={this.addToCart} key={element.name} />
+                    )
+                }
+
+            }
+            return (
+                <div className="row">
+
+                    <div className="col-md-8">
+                        <div className="row search">
+                            <input className="searchbox col-md-10" type="search" placeholder="Filter Items" value={this.state.filterText} onChange={this.handleFilterTextChange} />
+                            <button className="col-md-2" onClick={this.clearFilterText}>Clear</button>
+                        </div>
+                        {prodList}
+                    </div>
+                    <div className="col-md-4">
+                        <Cart cart={this.state.cart} removeFromCart={this.removeFromCart} />
+                    </div>
+
+                </div>
+            )
+        }
+    }
+
 }
 
 function App() {
-  return (
-    <NotesApp notes={notes}></NotesApp>
-  );
+    return (
+        <div className="main">
+            <h1 className="text-center">Ye Olde Ecommerce Shop</h1>
+            <Ecommerce inventory={inventory} />
+
+
+        </div>
+    );
 }
 
 export default App;
